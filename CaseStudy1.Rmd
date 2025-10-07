@@ -1,0 +1,8 @@
+---
+title: "Case Study in Class"
+author: "Jake Vettoretti"
+date: "2025-10-07"
+output: html_document
+---
+
+## Case Study 
