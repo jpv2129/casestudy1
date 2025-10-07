@@ -6,3 +6,64 @@ output: html_document
 ---
 
 ## Case Study 
+
+Loading data
+```{r}
+library(tidyverse)
+library(dplyr)
+library(p8105.datasets)
+data(nyc_airbnb)
+```
+
+
+#Brainstorming questions
+*Pick neighborhood, investigate price
+  *Do dates affect price?
+*Does type of unit affect rating/price?
+  *What about zip codes?
+*Which rental as the highest reviews?
+*Are there any connections between price and other var?
+*How else did the pandemic affect AirBNB in NYC?
+*Does the name of the rental affect the price/rating?
+*Does name of rental affect price/rating?
+
+Looking at prices
+```{r}
+nyc_airbnb |> 
+  drop_na(price) |> 
+  group_by(neighbourhood_group) |> 
+  summarize(
+    mean_price = mean(price),
+    min_price = min(price),
+    max_price = max(price),
+  )
+```
+What about room tupe in a given niehgborhhod
+```{r}
+nyc_airbnb |> 
+  drop_na(price) |> 
+  group_by(room_type, neighbourhood_group) |> 
+  summarize(
+    mean_price = mean(price)
+  ) |> 
+  pivot_wider(
+    names_from = room_type,
+    values_from = mean_price
+  )
+```
+
+
+
+
+Understanding the variables inside
+```{r, echo =FALSE}
+#str(nyc_airbnb)
+
+#nyc_airbnb |> 
+#  count(room_type)
+
+#nyc_airbnb |> 
+#  count(neighbourhood_group)
+```
+
+
